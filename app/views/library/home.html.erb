@@ -1,0 +1,95 @@
+<!-- Include Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<style>
+  body {
+    background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6ec4, #48c6ef);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .typed-text {
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+    min-height: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .home-container .btn {
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    background-color: white;
+    color: #2575fc;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .home-container .btn:hover {
+    transform: scale(1.05);
+    background-color: #ff6ec4;
+    color: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+</style>
+
+<div class="home-container">
+  <h1 class="typed-text" id="typed"></h1>
+  <%= link_to "➕ Add New Book", new_book_path, class: "btn mt-3" %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Typed("#typed", {
+      strings: [
+        "📚 Welcome to the Library App",
+        "✨ Manage your books easily",
+        "🔍 Search, Edit & Delete",
+        "➕ Add New Books",
+        "📦 Organized. Beautiful. Simple."
+      ],
+      typeSpeed: 55,
+      backSpeed: 30,
+      backDelay: 1500,
+      startDelay: 500,
+      loop: true,
+      showCursor: true,
+      cursorChar: "|"
+    });
+  });
+</script>

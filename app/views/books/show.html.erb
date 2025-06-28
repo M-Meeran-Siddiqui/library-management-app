@@ -1,0 +1,93 @@
+<style>
+  body {
+    background: linear-gradient(-45deg, #ffd3a5, #fd6585, #a18cd1, #fbc2eb);
+    background-size: 400% 400%;
+    animation: gradientBG 18s ease infinite;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ✨ Card Animation */
+  .card {
+    animation: fadeInUp 0.8s ease;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ✨ Button effects */
+  .btn {
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-header h3 {
+    animation: slideFadeIn 1s ease-in-out;
+  }
+
+  @keyframes slideFadeIn {
+    0% { opacity: 0; transform: translateX(-40px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  .card-body p {
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .badge {
+    font-size: 0.9rem;
+    padding: 0.4em 0.7em;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="card mx-auto shadow-lg" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h3 class="mb-0">📖 Book Details</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>📚 Title:</strong> <%= @book.title %></p>
+      <p><strong>✍️ Author:</strong> <%= @book.author %></p>
+      <p><strong>🔢 ISBN:</strong> <%= @book.isbn %></p>
+      <p><strong>📅 Published Date:</strong> <%= @book.published_date.strftime("%d-%b-%Y") %></p>
+      <p><strong>📦 Availability:</strong>
+        <% if @book.available %>
+          <span class="badge bg-success">Yes</span>
+        <% else %>
+          <span class="badge bg-danger">No</span>
+        <% end %>
+      </p>
+    </div>
+    <div class="card-footer text-center">
+      <%= link_to '🔙 Back to List', books_path, class: "btn btn-outline-primary me-2" %>
+      <%= link_to edit_book_path(@book), class: "btn btn-outline-secondary", title: "Edit" do %>
+        <i class="fas fa-edit"></i> Edit
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+<% if notice %>
+  <div class="alert alert-success d-flex align-items-center justify-content-between w-50 mx-auto mt-4 animated-flash">
+    <span><%= notice %></span>
+    <div class="spinner-border spinner-border-sm text-success ms-3" role="status" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    setTimeout(function () {
+      window.location.href = "<%= books_path %>";
+    }, 3000);
+  </script>
+<% end %>
+
+<style>
+  body {
+    background: linear-gradient(-45deg, #e3ffe7, #d9e7ff, #ffe4e1, #c1f0f6);
+    background-size: 400% 400%;
+    animation: animatedGradient 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  @keyframes animatedGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .form-wrapper {
+    animation: fadeInUp 1s ease;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+
+  .form-wrapper:hover {
+    transform: scale(1.01);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .btn {
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn:hover {
+    background-color: #17a2b8 !important;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  div::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animated-flash {
+    animation: fadeInFlash 0.8s ease-in-out;
+  }
+
+  @keyframes fadeInFlash {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="w-50 p-4 border rounded shadow bg-white form-wrapper" style="max-height: 80vh; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;">
+    <%= form_with model: book, local: true do |form| %>
+      <div class="mb-3">
+        <%= form.label :title, class: "form-label" %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :author, class: "form-label" %>
+        <%= form.text_field :author, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :isbn, class: "form-label" %>
+        <%= form.text_field :isbn, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :published_date, class: "form-label" %>
+        <%= form.date_field :published_date, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :genre, class: "form-label" %>
+        <%= form.text_field :genre, class: "form-control" %>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= form.check_box :available, class: "form-check-input" %>
+        <%= form.label :available, class: "form-check-label" %>
+      </div>
+
+      <%= form.submit book.persisted? ? "Update Book Details" : "Create Book", class: "btn btn-primary w-100" %>
+    <% end %>
+  </div>
+</div>
